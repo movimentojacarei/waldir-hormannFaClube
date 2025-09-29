@@ -3,55 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>waldir</title>
+  <title>Waldir - Corinthians</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f7;
-      color: #333;
+      background: #000;
+      color: #fff;
+      margin: 0;
       padding: 20px;
-    }
-    header {
-      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
     main {
+      width: 100%;
       max-width: 800px;
-      margin: 0 auto;
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
     }
-    figure {
-      margin: 0;
+    header {
+      text-align: center;
+      margin-bottom: 20px;
     }
-    img {
+    h1 {
+      color: #fff;
+      font-size: 1.8rem;
+    }
+    figure img {
       width: 100%;
       height: auto;
-      display: block;
+      border-radius: 10px;
     }
     figcaption {
       text-align: center;
-      font-size: 0.95em;
-      color: #555;
+      color: #ccc;
       margin-top: 6px;
     }
-    h1, h2 {
-      line-height: 1.2;
+    a {
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    /* Área de comentários */
+    .comentarios {
+      margin-top: 30px;
+    }
+    .comentarios h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    #formulario {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    #mensagem {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #444;
+      background: #222;
+      color: #fff;
+    }
+    button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ccc;
+    }
+    .lista {
+      list-style: none;
+      padding: 0;
+    }
+    .lista li {
+      background: #1c1c1c;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 4px solid #fff;
+    }
+    .hora {
+      display: block;
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>waldir do dorothoveo quando era feliz</h1>
-  </header>
   <main>
-    <section aria-labelledby="titulo-imagem">
-      <h2 id="titulo-imagem" style="font-size:1.25rem;">foto antes da esposa dele morrer :(</h2>
+    <header>
+      <h1>Waldir do Dorothoveo ⚫⚪</h1>
+    </header>
+
+    <section>
       <figure>
-        <img src="https://preview.redd.it/eu-fiz-uma-pasta-no-drive-com-70-dos-memes-do-carlinhos-que-v0-rpnx4lf2i7bb1.png?auto=webp&s=f57af18cb4f5f30981c25034ec614b71005eed32"
-             alt="WALDIR E SUA ESPOSA"
-             width="800" height="500" />
-        <figcaption>WALDIR E SUA ESPOSA</figcaption>
-        <h2>SAIBA MAIS AQUI:  <a>https://carlos.fandom.com/pt-br/wiki/Carlinhos</a></h2>
+        <img src="https://preview.redd.it/eu-fiz-uma-pasta-no-drive-com-70-dos-memes-do-carlinhos-que-v0-rpnx4lf2i7bb1.png?auto=webp&s=f57af18cb4f5f30981c25034ec614b71005eed32" 
+             alt="Waldir e sua esposa sorrindo em um momento feliz" />
+        <figcaption>Waldir e sua esposa</figcaption>
       </figure>
+      <p style="text-align:center; margin-top:15px;">
+        Saiba mais:  
+        <a href="https://carlos.fandom.com/pt-br/wiki/Carlinhos" target="_blank">Carlinhos Wiki</a>
+      </p>
+    </section>
+
+    <!-- Seção de comentários -->
+    <section class="comentarios">
+      <h2>Deixe sua mensagem:</h2>
+      <div id="formulario">
+        <input type="text" id="mensagem" placeholder="Digite aqui..." />
+        <button onclick="adicionarMensagem()">Enviar</button>
+      </div>
+      <ul class="lista" id="lista"></ul>
     </section>
   </main>
+
+  <script>
+    // Carregar mensagens salvas
+    window.onload = function() {
+      const mensagens = JSON.parse(localStorage.getItem("mensagens")) || [];
+      mensagens.forEach(msg => exibirMensagem(msg.texto, msg.horario, false));
+    }
+
+    function adicionarMensagem() {
+      const input = document.getElementById("mensagem");
+      const texto = input.value.trim();
+      if (texto === "") return;
+
+      // Data e hora
+      const agora = new Date();
+      const horario = agora.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+
+      exibirMensagem(texto, horario, true);
+      input.value = "";
+    }
+
+    function exibirMensagem(texto, horario, salvar) {
+      const lista = document.getElementById("lista");
+      const li = document.createElement("li");
+
+      li.innerHTML = `${texto} <span class="hora">${horario}</span>`;
+      lista.prepend(li);
+
+      if (salvar) {
+        let mensagens = JSON.parse(localStorage.getItem("mensagens")) || [];
+        mensagens.push({ texto, horario });
+        localStorage.setItem("mensagens", JSON.stringify(mensagens));
+      }
+    }
+  </script>
 </body>
 </html>
