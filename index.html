@@ -1,169 +1,247 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Waldir - Corinthians</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    main {
-      width: 100%;
-      max-width: 800px;
-      background: #111;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255,255,255,0.2);
-    }
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    h1 {
-      color: #fff;
-      font-size: 1.8rem;
-    }
-    figure img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
-    figcaption {
-      text-align: center;
-      color: #ccc;
-      margin-top: 6px;
-    }
-    a {
-      color: #fff;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    /* Área de comentários */
-    .comentarios {
-      margin-top: 30px;
-    }
-    .comentarios h2 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-    #formulario {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-    #mensagem {
-      flex: 1;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #444;
-      background: #222;
-      color: #fff;
-    }
-    button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 6px;
-      background: #fff;
-      color: #000;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #ccc;
-    }
-    .lista {
-      list-style: none;
-      padding: 0;
-    }
-    .lista li {
-      background: #1c1c1c;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      border-left: 4px solid #fff;
-    }
-    .hora {
-      display: block;
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-top: 5px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>FNAF 3</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    font-family: "Courier New", monospace;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+.screen.active { display: block; }
+
+/* ===== MENU ===== */
+#menu { background: black; }
+
+.springtrap {
+    position: absolute;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 85%;
+    opacity: 0.6;
+}
+
+.title {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    color: #9cff7a;
+    font-size: 26px;
+}
+
+.number {
+    position: absolute;
+    top: 90px;
+    left: 40px;
+    font-size: 120px;
+    color: #eaffea;
+}
+
+.options {
+    position: absolute;
+    top: 260px;
+    left: 40px;
+}
+
+.option {
+    font-size: 26px;
+    color: #9cff7a;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+/* ===== IMAGENS ===== */
+#news img,
+#night img,
+#office img,
+#jumpscare img,
+#cameraView {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== OFFICE ===== */
+#office { background: black; }
+
+/* BOTÃO CÂMERAS */
+#openCam {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px 16px;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    cursor: pointer;
+}
+
+/* ===== SISTEMA DE CÂMERAS ===== */
+#cameraSystem {
+    position: absolute;
+    inset: 0;
+    background: black;
+    display: none;
+}
+
+#map {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.7);
+    padding: 10px;
+    border: 1px solid #00ff00;
+}
+
+.cam {
+    color: #9cff7a;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.cam.active::before {
+    content: "● ";
+    color: #00ff00;
+}
+
+#exitCam {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 10px;
+    border: 2px solid red;
+    color: red;
+    cursor: pointer;
+}
+</style>
 </head>
+
 <body>
-  <main>
-    <header>
-      <h1>Waldir do Dorothoveo ⚫⚪</h1>
-    </header>
 
-    <section>
-      <figure>
-        <img src="https://preview.redd.it/eu-fiz-uma-pasta-no-drive-com-70-dos-memes-do-carlinhos-que-v0-rpnx4lf2i7bb1.png?auto=webp&s=f57af18cb4f5f30981c25034ec614b71005eed32" 
-             alt="Waldir e sua esposa sorrindo em um momento feliz" />
-        <figcaption>Waldir e sua esposa</figcaption>
-      </figure>
-      <p style="text-align:center; margin-top:15px;">
-        Saiba mais:  
-        <a href="https://carlos.fandom.com/pt-br/wiki/Carlinhos" target="_blank">Carlinhos Wiki</a>
-      </p>
-    </section>
+<!-- MENU -->
+<div id="menu" class="screen active">
+    <img class="springtrap" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/d703fc3a-23e5-41ca-a298-2fe7856c8d95/daycy8f-8aa6ff1b-7fee-49eb-a085-05bb5dd3aa48.gif?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiIvZi9kNzAzZmMzYS0yM2U1LTQxY2EtYTI5OC0yZmU3ODU2YzhkOTUvZGF5Y3k4Zi04YWE2ZmYxYi03ZmVlLTQ5ZWItYTA4NS0wNWJiNWRkM2FhNDguZ2lmIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.enmDq5v0-tTbv6l1nChMbJR9Jb-6ANjGmcMgGdTBJuo">
+    <div class="title">Five Nights at Freddy's</div>
+    <div class="number">3</div>
 
-    <!-- Seção de comentários -->
-    <section class="comentarios">
-      <h2>Deixe sua mensagem:</h2>
-      <div id="formulario">
-        <input type="text" id="mensagem" placeholder="Digite aqui..." />
-        <button onclick="adicionarMensagem()">Enviar</button>
-      </div>
-      <ul class="lista" id="lista"></ul>
-    </section>
-  </main>
+    <div class="options">
+        <div class="option" onclick="startGame()">Novo jogo</div>
+        <div class="option">Carregar jogo</div>
+        <div class="option" onclick="playJumpscare()">Jumpscare</div>
+    </div>
+</div>
 
-  <script>
-    // Carregar mensagens salvas
-    window.onload = function() {
-      const mensagens = JSON.parse(localStorage.getItem("mensagens")) || [];
-      mensagens.forEach(msg => exibirMensagem(msg.texto, msg.horario, false));
-    }
+<!-- NEWS -->
+<div id="news" class="screen">
+    <img src="https://fnaflore.com/wp-content/uploads/2016/01/0.png">
+</div>
 
-    function adicionarMensagem() {
-      const input = document.getElementById("mensagem");
-      const texto = input.value.trim();
-      if (texto === "") return;
+<!-- NIGHT -->
+<div id="night" class="screen">
+    <img src="https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/e/eb/FNaF3-Night1.jpg">
+</div>
 
-      // Data e hora
-      const agora = new Date();
-      const horario = agora.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+<!-- OFFICE -->
+<div id="office" class="screen">
+    <img id="officeGif" src="https://64.media.tumblr.com/57c1b1a88b99aab505d73a10c781d3e1/tumblr_inline_p7i0wksKPG1rvg9kl_500.gif">
 
-      exibirMensagem(texto, horario, true);
-      input.value = "";
-    }
+    <div id="openCam" onclick="toggleCams()">CÂMERAS ▲</div>
 
-    function exibirMensagem(texto, horario, salvar) {
-      const lista = document.getElementById("lista");
-      const li = document.createElement("li");
+    <!-- CAMERAS -->
+    <div id="cameraSystem">
+        <img id="cameraView">
 
-      li.innerHTML = `${texto} <span class="hora">${horario}</span>`;
-      lista.prepend(li);
+        <div id="map">
+            <div class="cam active" onclick="setCam(0)">CAM 01</div>
+            <div class="cam" onclick="setCam(1)">CAM 02</div>
+            <div class="cam" onclick="setCam(2)">CAM 03</div>
+            <div class="cam" onclick="setCam(3)">CAM 04</div>
+            <div class="cam" onclick="setCam(4)">CAM 05</div>
+        </div>
 
-      if (salvar) {
-        let mensagens = JSON.parse(localStorage.getItem("mensagens")) || [];
-        mensagens.push({ texto, horario });
-        localStorage.setItem("mensagens", JSON.stringify(mensagens));
-      }
-    }
-  </script>
+        <div id="exitCam" onclick="exitCams()">SAIR</div>
+    </div>
+</div>
+
+<!-- JUMPSCARE -->
+<div id="jumpscare" class="screen">
+    <img src="https://i.makeagif.com/media/10-15-2016/reBTvW.gif">
+</div>
+
+<script>
+const cams = [
+ "https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/e/eb/FNaF3_-_CAM_06.gif/revision/latest/smart/width/250/height/250?cb=20160411232014&path-prefix=es",
+ "https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/0/0f/FNaF3_-_CAM_05.gif/revision/latest?cb=20160411230102&path-prefix=es",
+ "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuGe6rSsdSjm-4bPk_a9GQY88LRcXQkOJaDYET0I53mQ&s=10",
+ "https://static.wikia.nocookie.net/freddy-fazbears-pizza/images/2/21/FNaF3_-_CAM_02.gif/revision/latest/smart/width/250/height/250?cb=20160411223616&path-prefix=es",
+ "https://i.redd.it/e9sinchjusk51.gif"
+];
+
+function show(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+}
+
+function startGame(){
+ show("news");
+ setTimeout(()=>show("night"),10000);
+ setTimeout(()=>{
+   show("office");
+   loopOffice();
+ },13000);
+}
+
+function playJumpscare(){
+ show("jumpscare");
+ setTimeout(()=>show("menu"),5000);
+}
+
+function loopOffice(){
+ setInterval(()=>{
+  officeGif.src = officeGif.src.split("?")[0]+"?t="+Date.now();
+ },2000);
+}
+
+let camOpen=false;
+function toggleCams(){
+ camOpen=!camOpen;
+ document.getElementById("cameraSystem").style.display=camOpen?"block":"none";
+ document.getElementById("openCam").innerText="CÂMERAS "+(camOpen?"▼":"▲");
+ if(camOpen) setCam(0);
+}
+
+function exitCams(){
+ camOpen=false;
+ document.getElementById("cameraSystem").style.display="none";
+ document.getElementById("openCam").innerText="CÂMERAS ▲";
+}
+
+function setCam(i){
+ cameraView.src=cams[i];
+ document.querySelectorAll(".cam").forEach(c=>c.classList.remove("active"));
+ document.querySelectorAll(".cam")[i].classList.add("active");
+
+ let n=0;
+ let g=setInterval(()=>{
+  cameraView.style.transform=`translate(${(Math.random()-0.5)*10}px,${(Math.random()-0.5)*10}px)`;
+  if(++n>5){clearInterval(g);cameraView.style.transform="";}
+ },50);
+}
+</script>
+
 </body>
 </html>
